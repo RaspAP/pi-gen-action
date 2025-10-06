@@ -60,6 +60,10 @@ export class PiGen {
       dockerOpts = `${this.config.dockerOpts} ${dockerOpts}`
     }
 
+    if (this.config.dockerPlatform && this.config.dockerPlatform !== '') {
+      dockerOpts = `--platform=${this.config.dockerPlatform} ${dockerOpts}`
+    }
+
     core.debug(
       `Running pi-gen build with PIGEN_DOCKER_OPTS="${dockerOpts}" and config: ${JSON.stringify(
         this.config
