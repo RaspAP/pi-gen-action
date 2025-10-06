@@ -113,7 +113,11 @@ inputs:
     description: Additional options to include in PIGEN_DOCKER_OPTS
     required: false
     default: ""
-
+  docker-platform:
+    description: Specify the Docker platform to run pi-gen in
+    required: false
+    default: ""
+    
   # action variables
 
   pi-gen-repository:
