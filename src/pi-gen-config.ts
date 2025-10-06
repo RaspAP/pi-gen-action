@@ -33,6 +33,7 @@ export interface PiGenConfig {
   enableNoobs: string
   exportLastStageOnly: string
   dockerOpts?: string
+  dockerPlatform?: string
 }
 
 export const DEFAULT_CONFIG: PiGenConfig = {
