@@ -39591,6 +39591,7 @@ async function configure() {
             core.getBooleanInput('export-last-stage-only')?.toString() ||
                 pi_gen_config_1.DEFAULT_CONFIG.exportLastStageOnly;
         userConfig.dockerOpts = core.getInput('docker-opts');
+        userConfig.dockerPlatform = core.getInput('docker-platform') || '';
         userConfig.setfcap = core.getInput('setfcap') || pi_gen_config_1.DEFAULT_CONFIG.setfcap;
         userConfig.piGenRelease =
             core.getInput('pi-gen-release') || pi_gen_config_1.DEFAULT_CONFIG.piGenRelease;
@@ -40341,6 +40342,9 @@ class PiGen {
         let dockerOpts = `${this.getStagesAsDockerMounts()} -e DEBIAN_FRONTEND=noninteractive`;
         if (this.config.dockerOpts !== undefined && this.config.dockerOpts !== '') {
             dockerOpts = `${this.config.dockerOpts} ${dockerOpts}`;
+        }
+        if (this.config.dockerPlatform && this.config.dockerPlatform !== '') {
+            dockerOpts = `--platform=${this.config.dockerPlatform} ${dockerOpts}`;
         }
         core.debug(`Running pi-gen build with PIGEN_DOCKER_OPTS="${dockerOpts}" and config: ${JSON.stringify(this.config)}`);
         return await exec
